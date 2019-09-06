@@ -5,6 +5,7 @@ using BudgetingAppApi.Forms;
 using Core.CategoryList;
 using Core.Forms;
 using Infastructure.Loaders;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 
@@ -24,11 +25,15 @@ namespace BudgetingAppApi.Controllers
             _budgetDataProcessor = new BudgetDataProcessor(_budgetRepository);
         }
 
-        // GET: api/<controller>
+        /// <summary>
+        /// Retreives all budgets
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<List<BudgetForm>> GetAllAsync()
+        public async Task<BudgetFormContainer> GetAllAsync()
         {
-            return await _budgetDataProcessor.GetBudgets(); 
+            var budgets = await _budgetDataProcessor.GetBudgets();
+            return new BudgetFormContainer { Budgets = budgets };
         }
 
         // GET api/<controller>/5

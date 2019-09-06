@@ -273,7 +273,7 @@ namespace Infastructure.Loaders
         public async Task<List<Budget>> GetAllBudgets()
         {
 
-            return await _budgetCollection.Find(_ => true).ToListAsync();
+            return await _budgetCollection.Find(_ => true).SortByDescending(x => x.EndDate).ToListAsync();
         }
 
         public async Task<List<Budget>> GetValidBudgets()

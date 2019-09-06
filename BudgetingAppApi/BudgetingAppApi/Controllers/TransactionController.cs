@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.CategoryList;
 using Core.Forms;
 using Infastructure.Loaders;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetingAppApi.Controllers

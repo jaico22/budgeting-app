@@ -1,0 +1,30 @@
+.budget-overview-bar
+{
+    width: 100%;
+    color: #ffffff;
+    border: 1px solid #252525;
+    background-color: #343a40;
+    margin-top: 5px;
+}
+
+.active-bar
+{
+    background-color: #083b22;
+}
+
+h1.table-header
+{
+    color: #ffffff;
+    font-size: 18pt;
+    text-align: left;
+    padding-top: 2.5%;
+}
+
+.budget-content
+{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333333;
+    overflow-y: hidden;
+    background-color: #1a1a1a;
+}
