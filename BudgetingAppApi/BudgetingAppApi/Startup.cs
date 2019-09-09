@@ -33,10 +33,11 @@ namespace BudgetingAppApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+            // services.AddCors(c =>
+            // {
+            //     c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader());
+            // });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +61,12 @@ namespace BudgetingAppApi
             {
                 app.UseHsts();
             }
-            app.UseCors(options => options.AllowAnyOrigin());
+            //app.UseCors(options => options.AllowAnyOrigin());
+            //app.UseCors("AllowOrigin");
+            //app.UseCors(options => options.AllowAnyMethod());
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyMethod()
+            );
             app.UseHttpsRedirection();
             app.UseMvc();
         }

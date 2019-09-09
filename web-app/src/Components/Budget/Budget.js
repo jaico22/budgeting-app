@@ -11,7 +11,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import CategoryTable from '../CategoryTable/CategoryTable'
 import CategoryHeader from '../CategoryHeader/CategoryHeader'
 import BudgetSummary from '../BudgetSummary/BudgetSummary'
-import BudgetHeader from '../BudgetHeader/BudgetHeader';
+import BudgetHeader from './BudgetHeader/BudgetHeader';
 class Budget extends React.Component{
     constructor(props){
         super(props);
@@ -31,7 +31,7 @@ class Budget extends React.Component{
                     </div>
                     <div className="budget-content">
                         <Container>
-                            <BudgetHeader />
+                            <BudgetHeader budgetId={budgetData.id}/>
                             <BudgetSummary budgetData={budgetData} />
                             <CategoryHeader />
                             <CategoryTable categories={budgetData.categories} />

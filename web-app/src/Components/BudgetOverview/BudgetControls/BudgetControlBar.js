@@ -44,7 +44,6 @@ class BudgetControlBar extends React.Component{
         bodyFormData.set('StartDate',startDate);
         bodyFormData.set('EndDate',endDate);
         bodyFormData.set('TotalToBeBudgeted',amountToBeBudgeted);
-        debugger;
         axios({
             method: 'post',
             url: 'https://localhost:44300/api/Budget',
