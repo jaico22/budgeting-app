@@ -75,6 +75,7 @@ namespace Core.CategoryList
             }
             budgetForm.Id = budget.Id.ToString();
             budgetForm.Name = budget.Name;
+            budgetForm.TotalToBeBudgeted = budget.TotalToBeBudgeted;
             budgetForm.Description = budget.Description;
             budgetForm.StartDate = budget.StartDate;
             budgetForm.EndDate = budget.EndDate;

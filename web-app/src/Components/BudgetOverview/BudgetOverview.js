@@ -1,9 +1,7 @@
 import React from 'react'
 import Budget from '../Budget/Budget'
-import Container from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import './BudgetOverview.css'
+import BudgetControlBar from './BudgetControls/BudgetControlBar'
 
 class BudgetOverview extends React.Component{
     constructor(props){
@@ -39,7 +37,7 @@ class BudgetOverview extends React.Component{
     const { error, isLoaded, budgets, activeBudgetId } = this.state;
     return (
       <div id="budget-overview-container">
-      
+        <BudgetControlBar />
         {budgets.map(budget => (
               <Budget BudgetData={budget} 
                       isActive={budget.id==activeBudgetId}

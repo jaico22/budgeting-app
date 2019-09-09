@@ -1,0 +1,11 @@
+.OverviewHeader{
+    float: left;
+    color: #ffffff;
+    font-size: 20pt;
+    padding: 10px;
+}
+
+.OverviewControlers{
+    float: right;
+    padding: 10px;
+}
