@@ -2,6 +2,7 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
+import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction'
 
 class Planning extends React.Component{
     constructor(props){
@@ -77,6 +78,9 @@ class Planning extends React.Component{
                         </Table>
                     </Modal.Body>
                     <Modal.Footer>
+                       <CreateTransaction budgetId={this.props.budgetId}
+                                          categoryId={this.props.categoryId}
+                                          isPlanned={true}/> 
                         <Button variant="secondary" onClick={this.handleClose}>
                         Close
                         </Button>

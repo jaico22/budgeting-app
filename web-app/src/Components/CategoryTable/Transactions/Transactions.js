@@ -2,6 +2,8 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
+import TransactionForm from '../../Forms/TransactionForm';
+import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction';
 
 class Transactions extends React.Component{
     constructor(props){
@@ -77,6 +79,9 @@ class Transactions extends React.Component{
                         </Table>
                     </Modal.Body>
                     <Modal.Footer>
+                        <CreateTransaction budgetId={this.props.budgetId}
+                                           categoryId={this.props.categoryId}
+                                           isPlanned={false}/> 
                         <Button variant="secondary" onClick={this.handleClose}>
                         Close
                         </Button>

@@ -59,9 +59,13 @@ class CategoryTable extends React.Component{
                                     <EditCategory categoryData={category} 
                                                   budgetId={this.props.budgetId}/>
                                     &nbsp;
-                                    <Transactions transactions={category.actualTransactions}/>
+                                    <Transactions transactions={category.actualTransactions}
+                                                  budgetId={this.props.budgetId}
+                                                  categoryId={category.id} />
                                     &nbsp;
-                                    <Planning transactions={category.plannedTransactions}/>
+                                    <Planning transactions={category.plannedTransactions}
+                                              budgetId={this.props.budgetId}
+                                              categoryId={category.id} />
                                 </ButtonToolbar>
                             </td>
                         </tr>
