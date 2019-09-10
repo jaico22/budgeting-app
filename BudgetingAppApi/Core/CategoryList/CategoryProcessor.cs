@@ -28,9 +28,7 @@ namespace Core.CategoryList
                 Id = new ObjectId(categoryForm.Id),
                 Name = categoryForm.Name,
                 Description = categoryForm.Description,
-                IsExpense = true,
-                PlannedTransactions = new List<Transaction>(),
-                ActualTransactions = new List<Transaction>()
+                IsExpense = true
             };
             return await _budgetRepository.EditCategory(new ObjectId(budgetId), category);
         }

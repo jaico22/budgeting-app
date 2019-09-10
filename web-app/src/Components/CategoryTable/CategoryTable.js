@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Transactions from './Transactions/Transactions'
 import Planning from './Planning/Planning'
-import EditCategory from './EditCategory/EditCategory'
+import EditCategory from '../Categories/CategoryControls/EditCategory'
 
 class CategoryTable extends React.Component{
     constructor(props){
@@ -56,7 +56,8 @@ class CategoryTable extends React.Component{
                             <td>{category.projectedRemaining}</td>
                             <td>
                                 <ButtonToolbar>
-                                    <EditCategory />
+                                    <EditCategory categoryData={category} 
+                                                  budgetId={this.props.budgetId}/>
                                     &nbsp;
                                     <Transactions transactions={category.actualTransactions}/>
                                     &nbsp;
