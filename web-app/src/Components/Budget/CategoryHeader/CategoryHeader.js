@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import './CategoryHeader.css'
+import CreateCategory from '../../Categories/CategoryControls/CreateCategory';
 class CategoryHeader extends React.Component{
     constructor(props){
         super(props);
@@ -19,7 +20,7 @@ class CategoryHeader extends React.Component{
                     </Col>
                     <Col>
                         <ButtonToolbar>
-                            <Button variant="primary">Add Category</Button>
+                            <CreateCategory budgetId={this.props.budgetId} />
                         </ButtonToolbar>
                     </Col>
                 </Row>

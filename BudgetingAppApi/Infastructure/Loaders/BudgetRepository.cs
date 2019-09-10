@@ -126,8 +126,12 @@ namespace Infastructure.Loaders
             {
                 return null;
             }
-            matchingBudget.Categories[matchingBudget.Categories.IndexOf(matchingCategory)] =
-                NewCategory;
+
+            // Update Name and Description
+            matchingBudget.Categories[matchingBudget.Categories.IndexOf(matchingCategory)].Name =
+                NewCategory.Name;
+            matchingBudget.Categories[matchingBudget.Categories.IndexOf(matchingCategory)].Description =
+                NewCategory.Description;
 
             // Update and return updated budget
             var update = Builders<Budget>.Update.Set<List<Category>>(x => x.Categories, matchingBudget.Categories);

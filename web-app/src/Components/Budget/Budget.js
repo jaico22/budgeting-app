@@ -42,8 +42,8 @@ class Budget extends React.Component{
                         <Container>
                             <BudgetHeader budgetFormData={this.state.budgetFormData}/>
                             <BudgetSummary budgetData={budgetData} />
-                            <CategoryHeader />
-                            <CategoryTable categories={budgetData.categories} />
+                            <CategoryHeader budgetId={budgetData.id} />
+                            <CategoryTable categories={budgetData.categories} budgetId={budgetData.id} />
                         </Container>
                     </div>
                 </div>
