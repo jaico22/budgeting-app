@@ -12,7 +12,6 @@ class CategoryFormData{
     }
 
     convertToFormData(){
-        debugger;
         var bodyFormData = new FormData();
         bodyFormData.set('Id', this.id);
         bodyFormData.set('Name', this.name);

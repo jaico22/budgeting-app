@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import BudgetForm from '../../Forms/BudgetForm'
 import BudgetFormData from '../../Forms/BudgetFormData'
+import DeleteCategory from '../../Categories/CategoryControls/DeleteCategory';
 
 class EditBudget extends React.Component{
     constructor(props){

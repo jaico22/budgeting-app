@@ -4,6 +4,7 @@ import CategoryFormData from '../../Forms/CategoryFormData';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import CategoryForm from '../../Forms/CategoryForm'
+import DeleteCategory from './DeleteCategory';
 
 class EditCategory extends React.Component{
     constructor(props){
@@ -80,6 +81,7 @@ class EditCategory extends React.Component{
                     </Modal.Body>
 
                     <Modal.Footer>
+                        <DeleteCategory categoryId={this.state.categoryFormData.id} budgetId={this.props.budgetId} />
                         <Button variant="secondary" onClick={this.closeWindow}>Cancel</Button>
                         <Button variant="success" onClick={this.editCategory}>Edit</Button>
                     </Modal.Footer>
