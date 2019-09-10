@@ -93,9 +93,17 @@ namespace Infastructure.Loaders
 
         }
 
-        public Task<Budget> EditBudget(ObjectId BudgetId, Budget NewBudget)
+        public async Task EditBudget(Budget NewBudget)
         {
-            throw new NotImplementedException();
+            // Update and return updated budget
+            var update = Builders<Budget>.Update.Set(x => x.Name, NewBudget.Name)
+                                                .Set(x => x.Description, NewBudget.Description)
+                                                .Set(x => x.TotalToBeBudgeted, NewBudget.TotalToBeBudgeted)
+                                                .Set(x => x.StartDate, NewBudget.StartDate)
+                                                .Set(x => x.EndDate, NewBudget.EndDate);
+
+            var filter = Builders<Budget>.Filter.Eq("_id", NewBudget.Id);
+            var budgetToBeUpdated = await _budgetCollection.FindOneAndUpdateAsync(filter, update);
         }
 
         public async Task<Budget> GetBudget(ObjectId BudgetId)
