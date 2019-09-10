@@ -54,6 +54,21 @@ namespace Core.CategoryList
             return budgetForms;
         }
 
+        public async Task EditBudget(BudgetForm budgetForm)
+        {
+            var budget = new Budget
+            {
+                Id = new ObjectId(budgetForm.Id),
+                TotalToBeBudgeted = budgetForm.TotalToBeBudgeted,
+                Description = budgetForm.Description,
+                Name = budgetForm.Name,
+                StartDate = budgetForm.StartDate,
+                EndDate = budgetForm.EndDate
+            };
+
+            await _budgetRepository.EditBudget(budget);
+        }
+
         public async Task<BudgetForm> GetBudgetById(ObjectId budgetId)
         {
             var budget = await _budgetRepository.GetBudget(budgetId);

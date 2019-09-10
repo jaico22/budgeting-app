@@ -13,7 +13,7 @@ using MongoDB.Bson;
 
 namespace BudgetingAppApi.Controllers
 {
-    [Route("api/[controller]")]
+    
     public class BudgetController : Controller
     {
         private readonly IBudgetRepository _budgetRepository;
@@ -30,6 +30,7 @@ namespace BudgetingAppApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("api/[controller]")]
         public async Task<BudgetFormContainer> GetAllAsync()
         {
             var budgets = await _budgetDataProcessor.GetBudgets();
@@ -38,6 +39,7 @@ namespace BudgetingAppApi.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
+        [Route("api/[controller]")]
         public async Task<IActionResult> GetByIdAsync(string id)
         {
             var objectId = new ObjectId(id);
@@ -51,13 +53,24 @@ namespace BudgetingAppApi.Controllers
 
         // POST api/<controller>
         [HttpPost]
+        [Route("api/[controller]")]
         public async Task<IActionResult> Post([FromForm]BudgetForm newBudget)
         {
             await _budgetDataProcessor.AddBudget(newBudget);
             return Ok();
         }
 
+        // POST api/<controller>/Edit
+        [HttpPost]
+        [Route("api/[controller]/Edit")]
+        public async Task<IActionResult> Edit([FromForm]BudgetForm newBudget)
+        {
+            await _budgetDataProcessor.EditBudget(newBudget);
+            return Ok();
+        }
+
         // DELETE api/<controller>/5
+        [Route("api/[controller]/Remove/{id}")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {

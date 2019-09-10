@@ -9,15 +9,24 @@ import Col from 'react-bootstrap/Col'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import CategoryTable from '../CategoryTable/CategoryTable'
-import CategoryHeader from '../CategoryHeader/CategoryHeader'
-import BudgetSummary from '../BudgetSummary/BudgetSummary'
+import CategoryHeader from './CategoryHeader/CategoryHeader'
+import BudgetSummary from './BudgetSummary/BudgetSummary'
 import BudgetHeader from './BudgetHeader/BudgetHeader';
+import BudgetFormData from '../Forms/BudgetFormData';
+import transformMongoDate from '../../Helpers/TransformMongoDate';
 class Budget extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            budgetData: this.props.BudgetData
+            budgetData: this.props.BudgetData,
+            budgetFormData: new BudgetFormData()
         }
+        // TODO: Refactor other componetns to use BudgetFormData
+        this.state.budgetFormData.setBudgetName(this.state.budgetData.name);
+        this.state.budgetFormData.setAmountToBeBudgeted(this.state.budgetData.totalToBeBudgeted);
+        this.state.budgetFormData.setStartDate(transformMongoDate(this.state.budgetData.startDate));
+        this.state.budgetFormData.setEndDate(transformMongoDate(this.state.budgetData.endDate))
+        this.state.budgetFormData.setId(this.state.budgetData.id);
     }
 
     render(){
@@ -31,7 +40,7 @@ class Budget extends React.Component{
                     </div>
                     <div className="budget-content">
                         <Container>
-                            <BudgetHeader budgetId={budgetData.id}/>
+                            <BudgetHeader budgetFormData={this.state.budgetFormData}/>
                             <BudgetSummary budgetData={budgetData} />
                             <CategoryHeader />
                             <CategoryTable categories={budgetData.categories} />

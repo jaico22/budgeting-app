@@ -20,7 +20,7 @@ namespace Infastructure.Loaders
 
         Task AddBudget(Budget NewBudget);
 
-        Task<Budget> EditBudget(ObjectId BudgetId, Budget NewBudget);
+        Task EditBudget(Budget NewBudget);
 
         Task<Budget> GetBudget(ObjectId BudgetId);
 
