@@ -21,6 +21,18 @@ namespace BudgetingAppApi.Controllers
             _categoryProcessor = new CategoryProcessor(_budgetRepository);
         }
 
+        [Route("api/[controller]/GetPlannedTransactions")]
+        [HttpGet("{budgetId}/{categoryId}")]
+        public async Task<IActionResult> GetPlannedTransactions(string budgetId, string categoryId)
+        {
+            var transactionList = await _categoryProcessor.GetPlannedTransactions(budgetId, categoryId);
+            if (transactionList == null)
+            {
+                return NotFound();
+            }
+            return Ok(transactionList);
+        }
+
         // POST api/<controller>/Add
         [Route("api/[controller]/Add")]
         [HttpPost("{budgetId}")]

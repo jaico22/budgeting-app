@@ -1,12 +1,22 @@
+import CategoryFormData from "./CategoryFormData";
+import transformMongoDate from '../../Helpers/TransformMongoDate'
 
 class BudgetFormData{
-    constructor(){
+    constructor(budget){
         this.id = "";
         this.budgetName = "";
         this.description = "";
-        this.amountToBeBudgeted = null;     
+        this.amountToBeBudgeted = 0.0;     
         this.startDate = null;
         this.endDate = null;
+        this.categories = [];
+        this.calculatedReadOnlyValues = {
+            totalBudgeted: 0.0,
+            actualSpent: 0.0,
+            leftOver: 0.0,
+            projectLeftOver: 0.0
+        }
+
         // Methods
         this.determineValidity = this.determineValidity.bind(this);
         this.checkValidName = this.checkValidName.bind(this);
@@ -15,6 +25,19 @@ class BudgetFormData{
         this.setEndDate = this.setEndDate.bind(this);
         this.setBudgetName = this.setBudgetName.bind(this);
         this.setAmountToBeBudgeted = this.setAmountToBeBudgeted.bind(this);
+        this.addCategory = this.addCategory.bind(this);
+        this.setCalculatedReadOnlyValues = this.setCalculatedReadOnlyValues.bind(this);
+
+        //
+        if(arguments.length){
+            this.setBudgetName(budget.name);
+            this.setAmountToBeBudgeted(budget.totalToBeBudgeted);
+            this.setStartDate(transformMongoDate(budget.startDate));
+            this.setEndDate(transformMongoDate(budget.endDate))
+            this.setId(budget.id);
+            this.setCategories(budget.categories);
+            this.setCalculatedReadOnlyValues(budget);
+        }
     }
 
     convertToFormData(){
@@ -27,8 +50,26 @@ class BudgetFormData{
         bodyFormData.set('TotalToBeBudgeted',this.amountToBeBudgeted);
         return bodyFormData;
     }
+    
+    setCalculatedReadOnlyValues(budget){
+        this.calculatedReadOnlyValues = {
+            totalBudgeted: budget.totalBudgeted,
+            actualSpent: budget.actualSpent,
+            leftOver: budget.leftOver,
+            projectLeftOver: budget.projectLeftOver
+        }
+    }
 
+    setCategories(categories){
+        (categories).forEach(category => {
+            this.addCategory(new CategoryFormData(category));
+        });
+    }
 
+    addCategory(categoryFormData){
+        this.categories.push(categoryFormData);
+        return true;
+    }
 
     setId(id){
         this.id = id;
