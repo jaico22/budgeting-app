@@ -10,6 +10,7 @@ class CreateTransaction extends React.Component{
         super(props);
         this.state = {
             showWindow: false,
+            formDataValid: false,
             transactionData: new TransactionFormData()
         }
         this.openWindow = this.openWindow.bind(this);
@@ -33,6 +34,7 @@ class CreateTransaction extends React.Component{
     updateTransactionData(data){
         this.setState({
             transactionData: data
+            
         })
     }
 
@@ -77,7 +79,7 @@ class CreateTransaction extends React.Component{
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.closeWindow}>Cancel</Button>
-                        <Button variant="success" onClick={this.addTransaction}>Create</Button>
+                        <Button disabled={!this.state.transactionData.determineValidity()} variant="success" onClick={this.addTransaction}>Create</Button>
                     </Modal.Footer>
                 </Modal>     
 

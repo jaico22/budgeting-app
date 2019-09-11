@@ -8,9 +8,9 @@ class TransactionForm extends React.Component{
     constructor(props){
         super(props)
         var transactionFormData = new TransactionFormData()
+        transactionFormData.setIsPlanned(this.props.isPlanned);
         if(this.props.defaultData != null){
-            transactionFormData = this.props.defaultData
-            
+            transactionFormData = this.props.defaultData;
         }
         this.state = {
             transactionFormData: transactionFormData,
@@ -18,6 +18,7 @@ class TransactionForm extends React.Component{
             nameErrorMsg: "",
             amountErrorMsg: "",
             dateErrorMsg: "",
+            linkedTransactionErrorMsg: "",
             plannedTransactions: []
         }
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -92,6 +93,17 @@ class TransactionForm extends React.Component{
         );
         
     }
+
+    handleLinkedId(linkedId){
+        var res = this.state.transactionFormData.setLinkedTransactionId(linkedId);
+        if(!res){
+            this.setState({linkedTransactionErrorMsg: "Select A Lnked Transaction"});
+        }else{
+            this.setState({linkedTransactionErrorMsg: ""});
+            this.updateParent();
+        }
+    }
+
     componentDidMount(){
         this.getPlannedTransactions()
         .then(plannedTransactions => {
@@ -105,15 +117,16 @@ class TransactionForm extends React.Component{
         // Add linked transactios form when approprioate
         let linkedTransactionForm;
         if(this.props.isPlanned===false){
-
                 linkedTransactionForm = (
                     <div>
                         <Form.Label>Linked Planned Transaction</Form.Label>
-                        <Form.Control as='select'>
+                        <Form.Control as='select' onChange={data=>{this.handleLinkedId(data.target.valeu)}}>
+                            <option value="">Select Linked Planned Transaction</option>
                             {this.state.plannedTransactions.map(transaction => (
-                                <option value='" + transaction.id + "'>{transaction.name}</option>
+                                <option value={transaction.id}>{transaction.name}</option>
                             ))}
                         </Form.Control>
+                        <p className="text-danger">{this.state.linkedTransactionErrorMsg}</p>
                     </div>
             )}
 
@@ -129,7 +142,7 @@ class TransactionForm extends React.Component{
                             onChange={data => {this.handleNameChange(data.target.value)}} 
                             value={this.state.transactionFormData.name}
                     />
-                    <p className="text-dager">{this.state.nameErrorMsg}</p>
+                    <p className="text-danger">{this.state.nameErrorMsg}</p>
 
                     {linkedTransactionForm}
 
@@ -138,21 +151,21 @@ class TransactionForm extends React.Component{
                             onChange={data => {this.handleDescriptionChange(data.target.value)}} 
                             value={this.state.transactionFormData.description}
                     />
-                    <p className="text-dager">{this.state.descriptionErrorMsg}</p>
+                    <p className="text-danger">{this.state.descriptionErrorMsg}</p>
 
                     <Form.Label>Amount</Form.Label>
                     <Form.Control type="number" step = "0.01" placeholder="1234.45" 
                             onChange={data => {this.handleAmountChange(data.target.value)}} 
                             value={this.state.transactionFormData.amount}
                     />
-                    <p className="text-dager">{this.state.amountErrorMsg}</p>
+                    <p className="text-danger">{this.state.amountErrorMsg}</p>
 
                     <Form.Label>Transaction Date</Form.Label>
                     <Form.Control type="text" placeholder="MM/DD/YYYY" 
                             onChange={data => {this.handleDateChange(data.target.value)}} 
                             value={this.state.transactionFormData.date}
                     />
-                    <p className="text-dager">{this.state.dateErrorMsg}</p>
+                    <p className="text-danger">{this.state.dateErrorMsg}</p>
 
                 </Form.Group>
             </Form>

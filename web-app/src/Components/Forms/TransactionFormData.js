@@ -18,6 +18,7 @@ class TransactionFormData{
         this.determineValidity = this.determineValidity.bind(this);
         this.setIsPlanned = this.setIsPlanned.bind(this);
         this.setId = this.setId.bind(this);
+        this.setLinkedTransactionId = this.setLinkedTransactionId.bind(this);
     }
 
     convertToFormData(){
@@ -32,12 +33,17 @@ class TransactionFormData{
         return bodyFormData;
     }
 
+    setLinkedTransactionId(id){
+        this.linkedTransactionId = id;
+        return true;
+    }
     setId(id){
         this.id = id;
         return true;
     }
 
     setIsPlanned(isPlanned){
+        debugger;
         this.isPlanned = isPlanned;
         return true;
     }
@@ -78,7 +84,8 @@ class TransactionFormData{
     determineValidity(){
         return this.validateName(this.name) &&
                this.validateDescription(this.name) &&
-               this.validateDate(this.date)
+               this.validateDate(this.date) &&
+               (this.isPlanned==true || (this.linkedTransactionId!="" && this.isPlanned==false))
     }
 }
 
