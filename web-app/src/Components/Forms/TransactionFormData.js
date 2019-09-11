@@ -1,3 +1,5 @@
+import transformMongoDate from '../../Helpers/TransformMongoDate'
+
 class TransactionFormData{
     constructor(transaction){
         this.id = "";
@@ -26,7 +28,7 @@ class TransactionFormData{
             this.setDescription(transaction.description);
             this.setName(transaction.name);
             this.setAmount(transaction.amount);
-            this.setDate(transaction.date);
+            this.setDate(transformMongoDate(transaction.date));
             this.setIsPlanned(transaction.isPlanned);
             this.setLinkedTransactionId(transaction.linkedTransactionId);
             this.setId(transaction.id);

@@ -13,6 +13,8 @@ class EditTransaction extends React.Component{
         }
         this.openWindow = this.openWindow.bind(this);
         this.closeWindow = this.closeWindow.bind(this);
+        this.editTransaction = this.editTransaction.bind(this);
+        this.updateTransactionData = this.updateTransactionData.bind(this);
     }
 
     openWindow(){
@@ -34,7 +36,7 @@ class EditTransaction extends React.Component{
     }
 
     editTransaction(){
-        this.state.transactionFormData.setIsPlanned(this.props.isPlanned);
+        this.state.transactionFormData.setIsPlanned(this.state.transactionFormData.isPlanned);
         var bodyFormData = this.state.transactionFormData.convertToFormData();
         Axios({
             method: 'post',
@@ -65,7 +67,7 @@ class EditTransaction extends React.Component{
                     </Modal.Header>
 
                     <Modal.Body>
-                        <TransactionForm isPlanned={this.props.isPlanned}
+                        <TransactionForm isPlanned={this.state.transactionFormData.isPlanned}
                                          budgetId={this.props.budgetId}
                                          categoryId={this.props.categoryId}
                                          parentCallback={data => {this.updateTransactionData(data)}}
@@ -74,7 +76,7 @@ class EditTransaction extends React.Component{
 
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.closeWindow}>Cancel</Button>
-                        <Button disabled={!this.state.transactionFormData.determineValidity()} variant="success" onClick={this.addTransaction}>Edit</Button>
+                        <Button disabled={!this.state.transactionFormData.determineValidity()} variant="success" onClick={this.editTransaction}>Edit</Button>
                     </Modal.Footer>
                 </Modal>  
             </div>

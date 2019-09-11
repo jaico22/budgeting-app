@@ -2,7 +2,10 @@
 function transformMongoDate(dateString)
 {
     var date = new Date(dateString);
-    return date.getMonth() + '/' + date.getDay() + '/' + date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var year = date.getFullYear();
+    return month + '/' + day + '/' + year; 
 }
 
 export default transformMongoDate;

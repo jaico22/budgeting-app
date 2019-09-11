@@ -61,11 +61,11 @@ class CategoryTable extends React.Component{
                                     &nbsp;
                                     <Transactions transactions={categoryFormData.actualTransactions}
                                                   budgetId={this.props.budgetId}
-                                                  categoryFormData={categoryFormData.id} />
+                                                  categoryId={categoryFormData.id} />
                                     &nbsp;
                                     <Planning transactions={categoryFormData.plannedTransactions}
                                               budgetId={this.props.budgetId}
-                                              categoryFormData={categoryFormData.id} />
+                                              categoryId={categoryFormData.id} />
                                 </ButtonToolbar>
                             </td>
                         </tr>

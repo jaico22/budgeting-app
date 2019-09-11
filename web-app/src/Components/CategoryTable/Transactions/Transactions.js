@@ -48,7 +48,9 @@ class Transactions extends React.Component{
                             {transactionFormData.date}
                         </td>
                         <td>
-                            <EditTransaction transactionFormData={transactionFormData} />
+                            <EditTransaction transactionFormData={transactionFormData} 
+                                             budgetId={this.props.budgetId}
+                                             categoryId={this.props.categoryId}/>
                         </td>
                     </tr>
                 )

@@ -120,11 +120,18 @@ class TransactionForm extends React.Component{
                 linkedTransactionForm = (
                     <div>
                         <Form.Label>Linked Planned Transaction</Form.Label>
-                        <Form.Control as='select' onChange={data=>{this.handleLinkedId(data.target.valeu)}}>
+                        <Form.Control as='select' onChange={data=>{this.handleLinkedId(data.target.value)}}>
                             <option value="">Select Linked Planned Transaction</option>
-                            {this.state.plannedTransactions.map(transaction => (
-                                <option value={transaction.id}>{transaction.name}</option>
-                            ))}
+                            {this.state.plannedTransactions.map(function(transaction){
+                                if (transaction.id==this.state.transactionFormData.linkedTransactionId){
+                                    return (
+                                        <option value={transaction.id} selected>{transaction.name}</option>
+                                    )
+                                }
+                                return (
+                                    <option value={transaction.id}>{transaction.name}</option>
+                                )
+                            }.bind(this))}
                         </Form.Control>
                         <p className="text-danger">{this.state.linkedTransactionErrorMsg}</p>
                     </div>
