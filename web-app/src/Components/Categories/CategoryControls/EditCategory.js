@@ -9,7 +9,6 @@ import DeleteCategory from './DeleteCategory';
 class EditCategory extends React.Component{
     constructor(props){
         super(props);
-
         this.state = {
             showWindow: false,
             categoryFormData: this.props.categoryFormData

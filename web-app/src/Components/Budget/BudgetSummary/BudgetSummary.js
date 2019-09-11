@@ -20,11 +20,11 @@ class BudgetSummary extends React.Component{
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{this.props.budgetFormData.amountToBeBudgeted}</td>
-                        <td>{this.props.budgetFormData.calculatedReadOnlyValues.totalBudgeted}</td>
-                        <td>{this.props.budgetFormData.calculatedReadOnlyValues.actualSpent}</td>
-                        <td>{this.props.budgetFormData.calculatedReadOnlyValues.leftOver}</td>
-                        <td>{this.props.budgetFormData.calculatedReadOnlyValues.projectLeftOver}</td>
+                        <td>${this.props.budgetFormData.amountToBeBudgeted}</td>
+                        <td>${this.props.budgetFormData.calculatedReadOnlyValues.totalBudgeted}</td>
+                        <td>${this.props.budgetFormData.calculatedReadOnlyValues.actualSpent}</td>
+                        <td>${this.props.budgetFormData.calculatedReadOnlyValues.leftOver}</td>
+                        <td>${this.props.budgetFormData.calculatedReadOnlyValues.projectLeftOver}</td>
                     </tr>
                 </tbody>
             </Table>

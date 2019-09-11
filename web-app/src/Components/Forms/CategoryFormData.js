@@ -7,6 +7,10 @@ class CategoryFormData{
         this.description = "";
         this.plannedTransactions = [];
         this.actualTransactions = [];
+        this.amountBudgeted = 0.0;
+        this.amountSpent = 0.0;
+        this.amountRemaining = 0.0;
+        this.projectedRemaining = 0.0;
 
         // Methods
         this.setId = this.setId.bind(this);
@@ -16,6 +20,9 @@ class CategoryFormData{
         this.determineValidity = this.determineValidity.bind(this);
         this.addPlannedTransaction = this.addPlannedTransaction.bind(this);
         this.addActualTransactions = this.addActualTransactions.bind(this);
+        this.setAmountBudgeted = this.setAmountBudgeted.bind(this);
+        this.setAmountSpent = this.setAmountSpent.bind(this);
+        this.setAmountRemaining = this.setAmountRemaining.bind(this);
 
         if(arguments.length){
             this.setId(category.id);
@@ -27,7 +34,25 @@ class CategoryFormData{
             category.actualTransactions.forEach(actualTransaction => {
                 this.addActualTransactions(new TransactionFormData(actualTransaction));
             })
+            this.setAmountBudgeted(category.amountBudgeted);
+            this.setAmountSpent(category.amountSpent);
+            this.setAmountRemaining(category.amountRemaining);
+
         }
+    }
+
+    setAmountRemaining(amountRemaining){
+        this.amountRemaining = amountRemaining;
+        return true;
+    }
+
+    setAmountSpent(amountSpent){
+        this.amountSpent = amountSpent;
+        return true;
+    }
+
+    setAmountBudgeted(amountBudgeted){
+        this.amountBudgeted = amountBudgeted;
     }
 
     addPlannedTransaction(transactionFormData){

@@ -50,10 +50,10 @@ class CategoryTable extends React.Component{
                         <tr>
                             <td>{categoryFormData.name}</td>
                             <td>{categoryFormData.description}</td>
-                            <td>{categoryFormData.amountBudgeted}</td>
-                            <td>{categoryFormData.amountSpent}</td>
-                            <td>{categoryFormData.amountRemaining}</td>
-                            <td>{categoryFormData.projectedRemaining}</td>
+                            <td>${categoryFormData.amountBudgeted}</td>
+                            <td>${categoryFormData.amountSpent}</td>
+                            <td>${categoryFormData.amountRemaining}</td>
+                            <td>${categoryFormData.projectedRemaining}</td>
                             <td>
                                 <ButtonToolbar>
                                     <EditCategory categoryFormData={categoryFormData} 
