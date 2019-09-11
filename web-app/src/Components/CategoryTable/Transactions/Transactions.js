@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import TransactionForm from '../../Forms/TransactionForm';
 import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction';
-
+import EditTransaction from '../../Transactions/TransactionControls/EditTransaction';
 class Transactions extends React.Component{
     constructor(props){
         super(props);
@@ -33,22 +33,22 @@ class Transactions extends React.Component{
         let transactionTableBody;
         if(this.props.transactions!=null){
             transactionTableBody = this.props.transactions.map(
-                transaction => (
+                transactionFormData => (
                     <tr>
                         <td>
-                            {transaction.name}
+                            {transactionFormData.name}
                         </td>
                         <td>
-                            {transaction.description}
+                            {transactionFormData.description}
                         </td>
                         <td>
-                            {transaction.amount}
+                            {transactionFormData.amount}
                         </td>
                         <td>
-                            {transaction.date}
+                            {transactionFormData.date}
                         </td>
                         <td>
-                            <Button variant="primary">Edit</Button>
+                            <EditTransaction transactionFormData={transactionFormData} />
                         </td>
                     </tr>
                 )

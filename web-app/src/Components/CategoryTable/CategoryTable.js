@@ -46,26 +46,26 @@ class CategoryTable extends React.Component{
                         </tr>                          
                 </thead>
                 <tbody>
-                    {this.props.categories.map(category =>(
+                    {this.props.categories.map(categoryFormData =>(
                         <tr>
-                            <td>{category.name}</td>
-                            <td>{category.description}</td>
-                            <td>{category.amountBudgeted}</td>
-                            <td>{category.amountSpent}</td>
-                            <td>{category.amountRemaining}</td>
-                            <td>{category.projectedRemaining}</td>
+                            <td>{categoryFormData.name}</td>
+                            <td>{categoryFormData.description}</td>
+                            <td>{categoryFormData.amountBudgeted}</td>
+                            <td>{categoryFormData.amountSpent}</td>
+                            <td>{categoryFormData.amountRemaining}</td>
+                            <td>{categoryFormData.projectedRemaining}</td>
                             <td>
                                 <ButtonToolbar>
-                                    <EditCategory categoryData={category} 
+                                    <EditCategory categoryFormData={categoryFormData} 
                                                   budgetId={this.props.budgetId}/>
                                     &nbsp;
-                                    <Transactions transactions={category.actualTransactions}
+                                    <Transactions transactions={categoryFormData.actualTransactions}
                                                   budgetId={this.props.budgetId}
-                                                  categoryId={category.id} />
+                                                  categoryFormData={categoryFormData.id} />
                                     &nbsp;
-                                    <Planning transactions={category.plannedTransactions}
+                                    <Planning transactions={categoryFormData.plannedTransactions}
                                               budgetId={this.props.budgetId}
-                                              categoryId={category.id} />
+                                              categoryFormData={categoryFormData.id} />
                                 </ButtonToolbar>
                             </td>
                         </tr>

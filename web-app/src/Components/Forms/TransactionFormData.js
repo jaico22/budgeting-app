@@ -1,5 +1,5 @@
 class TransactionFormData{
-    constructor(){
+    constructor(transaction){
         this.id = "";
         this.name = "";
         this.description = "";
@@ -7,7 +7,8 @@ class TransactionFormData{
         this.date = "";
         this.isPlanned = true;
         this.linkedTransactionId = "";
-        //
+
+        //Methods
         this.setDescription = this.setDescription.bind(this);
         this.setName = this.setName.bind(this);
         this.validateDescription = this.validateDescription.bind(this);
@@ -19,6 +20,17 @@ class TransactionFormData{
         this.setIsPlanned = this.setIsPlanned.bind(this);
         this.setId = this.setId.bind(this);
         this.setLinkedTransactionId = this.setLinkedTransactionId.bind(this);
+
+        //
+        if(arguments.length){
+            this.setDescription(transaction.description);
+            this.setName(transaction.name);
+            this.setAmount(transaction.amount);
+            this.setDate(transaction.date);
+            this.setIsPlanned(transaction.isPlanned);
+            this.setLinkedTransactionId(transaction.linkedTransactionId);
+            this.setId(transaction.id);
+        }
     }
 
     convertToFormData(){
@@ -43,7 +55,6 @@ class TransactionFormData{
     }
 
     setIsPlanned(isPlanned){
-        debugger;
         this.isPlanned = isPlanned;
         return true;
     }

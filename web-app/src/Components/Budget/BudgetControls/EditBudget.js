@@ -50,7 +50,7 @@ class EditBudget extends React.Component{
             //handle error
             console.log(response);
         });
-        this.handleClose();       
+        this.closeEditWindow();       
     }
 
     render(){

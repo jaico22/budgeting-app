@@ -1,14 +1,43 @@
+import TransactionFormData from "./TransactionFormData";
+
 class CategoryFormData{
-    constructor(){
+    constructor(category){
         this.id = "";
         this.name = "";
         this.description = "";
+        this.plannedTransactions = [];
+        this.actualTransactions = [];
+
         // Methods
         this.setId = this.setId.bind(this);
         this.setName = this.setName.bind(this);
         this.setDescription = this.setDescription.bind(this);
         this.checkValidName = this.checkValidName.bind(this);
         this.determineValidity = this.determineValidity.bind(this);
+        this.addPlannedTransaction = this.addPlannedTransaction.bind(this);
+        this.addActualTransactions = this.addActualTransactions.bind(this);
+
+        if(arguments.length){
+            this.setId(category.id);
+            this.setName(category.name);
+            this.setDescription(category.description);
+            category.plannedTransactions.forEach(plannedTransaction => {
+                this.addPlannedTransaction(new TransactionFormData(plannedTransaction));
+            });
+            category.actualTransactions.forEach(actualTransaction => {
+                this.addActualTransactions(new TransactionFormData(actualTransaction));
+            })
+        }
+    }
+
+    addPlannedTransaction(transactionFormData){
+        this.plannedTransactions.push(transactionFormData);
+        return true;
+    }
+
+    addActualTransactions(transactionFormData){
+        this.actualTransactions.push(transactionFormData);
+        return true;
     }
 
     convertToFormData(){
