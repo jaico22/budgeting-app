@@ -70,9 +70,11 @@ class CategoryTable extends React.Component{
                                         />
 
                                         &nbsp;
-                                        <Planning transactions={categoryFormData.plannedTransactions}
+                                        <Route path='/:budgetId/:categoryId/:pageId?' 
+                                                render={(props) => <Planning {...props} transactions={categoryFormData.plannedTransactions}
                                                 budgetId={this.props.budgetId}
-                                                categoryId={categoryFormData.id} />
+                                                categoryId={categoryFormData.id} />}
+                                        />
                                     </ButtonToolbar>
                                 </Router>
                             </td>

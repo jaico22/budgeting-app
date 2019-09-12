@@ -15,16 +15,28 @@ class Planning extends React.Component{
 
     }
 
+    componentDidMount(){
+        if(this.props.match.params.pageId==="planning" &&
+           this.props.match.params.budgetId===this.props.budgetId &&
+           this.props.match.params.categoryId===this.props.categoryId){
+            this.setState({
+                showTransactions: true
+            })
+        }
+    }
+
     handleClose(){
         this.setState({
             showTransactions: false
         })
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId);
     }
 
     handleShow(){
         this.setState({
             showTransactions: true
         })
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId+'/planning');
     }
   
 

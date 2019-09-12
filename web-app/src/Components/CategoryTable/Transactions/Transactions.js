@@ -30,7 +30,9 @@ class Transactions extends React.Component{
     handleClose(){
         this.setState({
             showTransactions: false
-        })
+        })        
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId);
+
     }
 
     handleShow(){
