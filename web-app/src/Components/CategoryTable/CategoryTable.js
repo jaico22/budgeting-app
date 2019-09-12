@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import Transactions from './Transactions/Transactions'
 import Planning from './Planning/Planning'
 import EditCategory from '../Categories/CategoryControls/EditCategory'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 class CategoryTable extends React.Component{
     constructor(props){
@@ -55,18 +56,25 @@ class CategoryTable extends React.Component{
                             <td>${categoryFormData.amountRemaining}</td>
                             <td>${categoryFormData.projectedRemaining}</td>
                             <td>
-                                <ButtonToolbar>
-                                    <EditCategory categoryFormData={categoryFormData} 
-                                                  budgetId={this.props.budgetId}/>
-                                    &nbsp;
-                                    <Transactions transactions={categoryFormData.actualTransactions}
-                                                  budgetId={this.props.budgetId}
-                                                  categoryId={categoryFormData.id} />
-                                    &nbsp;
-                                    <Planning transactions={categoryFormData.plannedTransactions}
-                                              budgetId={this.props.budgetId}
-                                              categoryId={categoryFormData.id} />
-                                </ButtonToolbar>
+                                <Router>
+                                    <ButtonToolbar>
+                                        <EditCategory categoryFormData={categoryFormData} 
+                                                    budgetId={this.props.budgetId}/>
+                                        &nbsp;
+
+                                        <Route path='/:budgetId/:categoryId/:pageId?' 
+                                               render={(props) => <Transactions {...props} 
+                                                                    transactions={categoryFormData.actualTransactions}
+                                                                    budgetId={this.props.budgetId}
+                                                                    categoryId={categoryFormData.id} />} 
+                                        />
+
+                                        &nbsp;
+                                        <Planning transactions={categoryFormData.plannedTransactions}
+                                                budgetId={this.props.budgetId}
+                                                categoryId={categoryFormData.id} />
+                                    </ButtonToolbar>
+                                </Router>
                             </td>
                         </tr>
                     ))}

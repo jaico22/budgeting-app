@@ -6,6 +6,7 @@ import TransactionForm from '../../Forms/TransactionForm';
 import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction';
 import EditTransaction from '../../Transactions/TransactionControls/EditTransaction';
 class Transactions extends React.Component{
+
     constructor(props){
         super(props);
         this.state = {
@@ -16,6 +17,16 @@ class Transactions extends React.Component{
 
     }
 
+    componentDidMount(){
+        if(this.props.match.params.pageId==="transactions" &&
+           this.props.match.params.budgetId===this.props.budgetId &&
+           this.props.match.params.categoryId===this.props.categoryId){
+            this.setState({
+                showTransactions: true
+            })
+        }
+    }
+    
     handleClose(){
         this.setState({
             showTransactions: false
@@ -26,6 +37,7 @@ class Transactions extends React.Component{
         this.setState({
             showTransactions: true
         })
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId+'/transactions');
     }
   
 
