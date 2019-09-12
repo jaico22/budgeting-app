@@ -6,6 +6,7 @@ import TransactionForm from '../../Forms/TransactionForm';
 import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction';
 import EditTransaction from '../../Transactions/TransactionControls/EditTransaction';
 class Transactions extends React.Component{
+
     constructor(props){
         super(props);
         this.state = {
@@ -16,16 +17,29 @@ class Transactions extends React.Component{
 
     }
 
+    componentDidMount(){
+        if(this.props.match.params.pageId==="transactions" &&
+           this.props.match.params.budgetId===this.props.budgetId &&
+           this.props.match.params.categoryId===this.props.categoryId){
+            this.setState({
+                showTransactions: true
+            })
+        }
+    }
+    
     handleClose(){
         this.setState({
             showTransactions: false
-        })
+        })        
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId);
+
     }
 
     handleShow(){
         this.setState({
             showTransactions: true
         })
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId+'/transactions');
     }
   
 
@@ -42,7 +56,10 @@ class Transactions extends React.Component{
                             {transactionFormData.description}
                         </td>
                         <td>
-                            {transactionFormData.amount}
+                            {transactionFormData.linkedTransactionName}
+                        </td>
+                        <td>
+                            ${transactionFormData.amount}
                         </td>
                         <td>
                             {transactionFormData.date}
@@ -61,7 +78,7 @@ class Transactions extends React.Component{
                 <Button variant="info" onClick={this.handleShow}>
                     Transactions
                 </Button>
-                <Modal size="lg" show={this.state.showTransactions} onHide={this.handleClose}>
+                <Modal size="xl" show={this.state.showTransactions} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>Transactions</Modal.Title>
                     </Modal.Header>
@@ -71,6 +88,7 @@ class Transactions extends React.Component{
                                 <tr>
                                 <th>Name</th>
                                 <th>Description</th>
+                                <th>Linked Transaction</th>
                                 <th>Amount</th>
                                 <th>Date</th>
                                 <th></th></tr>
@@ -86,9 +104,6 @@ class Transactions extends React.Component{
                                            isPlanned={false}/> 
                         <Button variant="secondary" onClick={this.handleClose}>
                         Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleClose}>
-                        Save Changes
                         </Button>
                     </Modal.Footer>
                 </Modal>

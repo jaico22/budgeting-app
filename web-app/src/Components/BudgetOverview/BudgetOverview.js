@@ -3,6 +3,8 @@ import Budget from '../Budget/Budget'
 import './BudgetOverview.css'
 import BudgetControlBar from './BudgetControls/BudgetControlBar'
 import BudgetFormData from '../Forms/BudgetFormData';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 class BudgetOverview extends React.Component{
     constructor(props){
@@ -11,7 +13,6 @@ class BudgetOverview extends React.Component{
             error: null,
             isLoaded: false,
             budgets: [],
-            activeBudgetId: null,
             budgetFormData: []  
         }
         this.changeActiveBudget = this.changeActiveBudget.bind(this)
@@ -30,9 +31,7 @@ class BudgetOverview extends React.Component{
   }
 
   changeActiveBudget(newActiveBudgetId){
-    this.setState({
-      activeBudgetId: newActiveBudgetId
-    })
+    this.props.history.push('/'+newActiveBudgetId)
   }
 
   render() {
@@ -42,7 +41,7 @@ class BudgetOverview extends React.Component{
         <BudgetControlBar />
         {budgets.map(budget => (
               <Budget BudgetData={budget} 
-                      isActive={budget.id==activeBudgetId}
+                      isActive={budget.id==(this.props.match.params.budgetId || "")}
                       handler={this.changeActiveBudget}/>
 
         ))}

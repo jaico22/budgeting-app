@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction'
+import EditTransaction from '../../Transactions/TransactionControls/EditTransaction'
 
 class Planning extends React.Component{
     constructor(props){
@@ -15,16 +16,28 @@ class Planning extends React.Component{
 
     }
 
+    componentDidMount(){
+        if(this.props.match.params.pageId==="planning" &&
+           this.props.match.params.budgetId===this.props.budgetId &&
+           this.props.match.params.categoryId===this.props.categoryId){
+            this.setState({
+                showTransactions: true
+            })
+        }
+    }
+
     handleClose(){
         this.setState({
             showTransactions: false
         })
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId);
     }
 
     handleShow(){
         this.setState({
             showTransactions: true
         })
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId+'/planning');
     }
   
 
@@ -32,22 +45,24 @@ class Planning extends React.Component{
         let transactionTableBody;
         if(this.props.transactions!=null){
             transactionTableBody = this.props.transactions.map(
-                transaction => (
+                transactionFormData => (
                     <tr>
                         <td>
-                            {transaction.name}
+                            {transactionFormData.name}
                         </td>
                         <td>
-                            {transaction.description}
+                            {transactionFormData.description}
                         </td>
                         <td>
-                            {transaction.amount}
+                            ${transactionFormData.amount}
                         </td>
                         <td>
-                            {transaction.date}
+                            {transactionFormData.date}
                         </td>
                         <td>
-                            <Button variant="primary">Edit</Button>
+                            <EditTransaction transactionFormData={transactionFormData} 
+                                            budgetId={this.props.budgetId}
+                                            categoryId={this.props.categoryId}/>
                         </td>
                     </tr>
                 )
@@ -83,9 +98,6 @@ class Planning extends React.Component{
                                           isPlanned={true}/> 
                         <Button variant="secondary" onClick={this.handleClose}>
                         Close
-                        </Button>
-                        <Button variant="primary" onClick={this.handleClose}>
-                        Save Changes
                         </Button>
                     </Modal.Footer>
                 </Modal>
