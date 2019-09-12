@@ -9,6 +9,7 @@ class TransactionFormData{
         this.date = "";
         this.isPlanned = true;
         this.linkedTransactionId = "";
+        this.linkedTransactionName = "";
 
         //Methods
         this.setDescription = this.setDescription.bind(this);
@@ -32,6 +33,7 @@ class TransactionFormData{
             this.setIsPlanned(transaction.isPlanned);
             this.setLinkedTransactionId(transaction.linkedTransactionId);
             this.setId(transaction.id);
+            this.setLinkedTransactionName(transaction.linkedTransactionName);
         }
     }
 
@@ -45,6 +47,11 @@ class TransactionFormData{
         bodyFormData.set('IsPlanned',this.isPlanned);
         bodyFormData.set('LinkedTransactionId',this.linkedTransactionId);
         return bodyFormData;
+    }
+
+    setLinkedTransactionName(linkedTransactionName){
+        this.linkedTransactionName = linkedTransactionName;
+        return true;
     }
 
     setLinkedTransactionId(id){
