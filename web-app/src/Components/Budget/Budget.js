@@ -1,15 +1,8 @@
 import React from 'react'
 import './budget.css'
-import Table from 'react-bootstrap/Table'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
-import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Popover from 'react-bootstrap/Popover'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import CategoryTable from '../CategoryTable/CategoryTable'
-import CategoryHeader from './CategoryHeader/CategoryHeader'
+import CategoryTable from '../Categories/CategoryTable/CategoryTable'
+import CategoryHeader from '../Categories/CategoryHeader/CategoryHeader'
 import BudgetSummary from './BudgetSummary/BudgetSummary'
 import BudgetHeader from './BudgetHeader/BudgetHeader';
 import BudgetFormData from '../Forms/BudgetFormData';

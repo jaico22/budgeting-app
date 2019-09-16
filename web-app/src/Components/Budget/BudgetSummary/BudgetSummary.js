@@ -13,18 +13,18 @@ class BudgetSummary extends React.Component{
                     <tr>
                         <th>Total To Be Budgeted</th>
                         <th>Total Budgeted</th>
+                        <th>Total Not Budgeted</th>
                         <th>Total Spent</th>
                         <th>Total Remaining</th>
-                        <th>Projected Remaining</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>${this.props.budgetFormData.amountToBeBudgeted}</td>
                         <td>${this.props.budgetFormData.calculatedReadOnlyValues.totalBudgeted}</td>
+                        <td>${this.props.budgetFormData.amountToBeBudgeted - this.props.budgetFormData.calculatedReadOnlyValues.totalBudgeted}</td>
                         <td>${this.props.budgetFormData.calculatedReadOnlyValues.actualSpent}</td>
                         <td>${this.props.budgetFormData.calculatedReadOnlyValues.leftOver}</td>
-                        <td>${this.props.budgetFormData.calculatedReadOnlyValues.projectLeftOver}</td>
                     </tr>
                 </tbody>
             </Table>

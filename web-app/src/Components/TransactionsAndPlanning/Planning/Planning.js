@@ -2,11 +2,10 @@ import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
-import TransactionForm from '../../Forms/TransactionForm';
-import CreateTransaction from '../../Transactions/TransactionControls/CreateTransaction';
-import EditTransaction from '../../Transactions/TransactionControls/EditTransaction';
-class Transactions extends React.Component{
+import CreateTransaction from '../TransactionControls/CreateTransaction'
+import EditTransaction from '../TransactionControls/EditTransaction'
 
+class Planning extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -18,7 +17,7 @@ class Transactions extends React.Component{
     }
 
     componentDidMount(){
-        if(this.props.match.params.pageId==="transactions" &&
+        if(this.props.match.params.pageId==="planning" &&
            this.props.match.params.budgetId===this.props.budgetId &&
            this.props.match.params.categoryId===this.props.categoryId){
             this.setState({
@@ -26,20 +25,19 @@ class Transactions extends React.Component{
             })
         }
     }
-    
+
     handleClose(){
         this.setState({
             showTransactions: false
-        })        
+        })
         this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId);
-
     }
 
     handleShow(){
         this.setState({
             showTransactions: true
         })
-        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId+'/transactions');
+        this.props.history.push('/'+this.props.budgetId+'/'+this.props.categoryId+'/planning');
     }
   
 
@@ -56,9 +54,6 @@ class Transactions extends React.Component{
                             {transactionFormData.description}
                         </td>
                         <td>
-                            {transactionFormData.linkedTransactionName}
-                        </td>
-                        <td>
                             ${transactionFormData.amount}
                         </td>
                         <td>
@@ -66,8 +61,8 @@ class Transactions extends React.Component{
                         </td>
                         <td>
                             <EditTransaction transactionFormData={transactionFormData} 
-                                             budgetId={this.props.budgetId}
-                                             categoryId={this.props.categoryId}/>
+                                            budgetId={this.props.budgetId}
+                                            categoryId={this.props.categoryId}/>
                         </td>
                     </tr>
                 )
@@ -76,11 +71,15 @@ class Transactions extends React.Component{
         return(
             <div>
                 <Button variant="info" onClick={this.handleShow}>
-                    Transactions
+                    Planning
                 </Button>
-                <Modal size="xl" show={this.state.showTransactions} onHide={this.handleClose}>
+                <Modal size="lg" show={this.state.showTransactions} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Transactions</Modal.Title>
+                        <Modal.Title>Planned Transactions</Modal.Title>
+                        &nbsp;
+                        <CreateTransaction budgetId={this.props.budgetId}
+                                          categoryId={this.props.categoryId}
+                                          isPlanned={true}/> 
                     </Modal.Header>
                     <Modal.Body>
                         <Table>
@@ -88,7 +87,6 @@ class Transactions extends React.Component{
                                 <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Linked Transaction</th>
                                 <th>Amount</th>
                                 <th>Date</th>
                                 <th></th></tr>
@@ -99,9 +97,9 @@ class Transactions extends React.Component{
                         </Table>
                     </Modal.Body>
                     <Modal.Footer>
-                        <CreateTransaction budgetId={this.props.budgetId}
-                                           categoryId={this.props.categoryId}
-                                           isPlanned={false}/> 
+                       <CreateTransaction budgetId={this.props.budgetId}
+                                          categoryId={this.props.categoryId}
+                                          isPlanned={true}/> 
                         <Button variant="secondary" onClick={this.handleClose}>
                         Close
                         </Button>
@@ -112,4 +110,4 @@ class Transactions extends React.Component{
     }
 }
 
-export default Transactions;
+export default Planning;
