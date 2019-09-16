@@ -10,6 +10,7 @@ class TransactionFormData{
         this.isPlanned = true;
         this.linkedTransactionId = "";
         this.linkedTransactionName = "";
+        this.sumLinkedTransactions = 0.0;
 
         //Methods
         this.setDescription = this.setDescription.bind(this);
@@ -23,6 +24,7 @@ class TransactionFormData{
         this.setIsPlanned = this.setIsPlanned.bind(this);
         this.setId = this.setId.bind(this);
         this.setLinkedTransactionId = this.setLinkedTransactionId.bind(this);
+        this.setSumLinkedTransactions = this.setSumLinkedTransactions.bind(this);
 
         //
         if(arguments.length){
@@ -34,6 +36,7 @@ class TransactionFormData{
             this.setLinkedTransactionId(transaction.linkedTransactionId);
             this.setId(transaction.id);
             this.setLinkedTransactionName(transaction.linkedTransactionName);
+            this.setSumLinkedTransactions(transaction.sumLinkedTransactions);
         }
     }
 
@@ -47,6 +50,11 @@ class TransactionFormData{
         bodyFormData.set('IsPlanned',this.isPlanned);
         bodyFormData.set('LinkedTransactionId',this.linkedTransactionId);
         return bodyFormData;
+    }
+
+    setSumLinkedTransactions(sumLinkedTransactions){
+        this.sumLinkedTransactions = sumLinkedTransactions;
+        return true;
     }
 
     setLinkedTransactionName(linkedTransactionName){
